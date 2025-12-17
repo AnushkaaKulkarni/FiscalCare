@@ -5,14 +5,25 @@ export async function POST(req: Request) {
     const { message } = await req.json();
     const apiKey = process.env.GEMINI_API_KEY;
 
-    const modelName = "gemini-2.5-flash"; // Use valid model
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${process.env.GEMINI_API_KEY}`;
+    if (!apiKey) {
+      return NextResponse.json(
+        { reply: "Gemini API key missing" },
+        { status: 500 }
+      );
+    }
+
+    const modelName = "gemini-1.5-flash";
+    const url = `https://generativelanguage.googleapis.com/v1/models/${modelName}:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: message }] }],
+        contents: [
+          {
+            parts: [{ text: message }],
+          },
+        ],
       }),
     });
 
