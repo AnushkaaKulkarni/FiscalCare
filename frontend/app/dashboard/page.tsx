@@ -56,7 +56,7 @@ export default function DashboardPage() {
 
         if (!token || !user) {
           alert("Please log in again to view your dashboard.");
-          router.push("/");
+          router.replace("/");
           return;
         }
 
