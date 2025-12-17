@@ -41,7 +41,7 @@ export default function GSTFilingPage() {
   const router = useRouter();
   const [invoices, setInvoices] = useState<InvoiceRaw[]>([]);
   const [loading, setLoading] = useState(true);
-  const API_BASE = "http://localhost:5000";
+  const API_BASE = `${process.env.NEXT_PUBLIC_API_URL}`;
 
   useEffect(() => {
     let mounted = true;

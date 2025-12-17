@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     }
 
     // 1️⃣ Send file to backend parser (Node/Express)
-    const parseResp = await fetch("http://localhost:5000/api/parse", {
+    const parseResp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/parse`, {
       method: "POST",
       body: formData,
     });
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const parsedData = await parseResp.json();
 
     // 2️⃣ Send parsed data to backend /api/invoices to store in MongoDB
-    const saveResp = await fetch("http://localhost:5000/api/invoices", {
+    const saveResp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/invoices`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(parsedData.parsed), // send only parsed data

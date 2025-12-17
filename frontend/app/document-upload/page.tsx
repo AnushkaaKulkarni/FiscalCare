@@ -38,7 +38,7 @@ export default function DocumentUpload(): JSX.Element {
     try {
       console.log("🔐 Upload token length:", token ? token.length : "no-token");
 
-      const res = await fetch("http://localhost:5000/api/parse", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/parse`, {
         method: "POST",
         body: formData,
         headers: {

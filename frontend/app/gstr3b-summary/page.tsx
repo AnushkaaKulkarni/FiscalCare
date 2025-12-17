@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import { useRouter } from "next/navigation";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = `${process.env.NEXT_PUBLIC_API_URL}`;
 
 interface Gstr3bSummary {
   month: string;          // e.g. "2025-01" (based on INVOICE DATE period)

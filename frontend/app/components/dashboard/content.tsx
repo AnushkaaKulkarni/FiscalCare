@@ -32,7 +32,7 @@ export function DashboardContent({ activeSection }: DashboardContentProps) {
   const fetchInvoices = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/invoices");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/invoices`);
       const data = await res.json();
       setInvoices(data);
     } catch (err) {

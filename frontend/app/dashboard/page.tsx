@@ -37,7 +37,7 @@ interface Invoice {
 }
 
 const COLORS = ["#22c55e", "#f97316"]; // green, orange
-const API_BASE = "http://localhost:5000";
+const API_BASE = `${process.env.NEXT_PUBLIC_API_URL}`;
 
 type FilterType = "all" | "verified" | "mismatched";
 
