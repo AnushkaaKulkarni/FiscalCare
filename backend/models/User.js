@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema(
 
   gstin: {
   type: String,
-  required: true,
+  required: false,
   uppercase: true,
   trim: true
 },
