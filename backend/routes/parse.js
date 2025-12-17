@@ -453,12 +453,12 @@ if (invLabel && invLabel[1]) {
 const userDoc = await User.findById(req.user.id).lean();
 const myGSTIN = userDoc?.gstin;
 
-if (!myGSTIN) {
-  return res.status(400).json({
-    error: "GSTIN_NOT_SET",
-    message: "User GSTIN not found. Please set GSTIN in profile."
-  });
-}
+// if (!myGSTIN) {
+//   return res.status(400).json({
+//     error: "GSTIN_NOT_SET",
+//     message: "User GSTIN not found. Please set GSTIN in profile."
+//   });
+// }
 
 
 // ---------- Decide SALE vs PURCHASE (FIXED & SAFE) ----------
