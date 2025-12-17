@@ -1,0 +1,23 @@
+{
+  "name": "fiscalcare-backend",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "update:gst": "python ./scripts/update_gst_rates.py",
+    "seed:demo": "node ./scripts/seed_demo_rates.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "formidable": "^3.5.4",
+    "fs-extra": "^11.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.0.0",
+    "morgan": "^1.10.0",
+    "pdf-parse": "^1.1.4",
+    "xlsx": "^0.18.5"
+  }
+}
