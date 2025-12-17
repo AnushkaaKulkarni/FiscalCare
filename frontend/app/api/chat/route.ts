@@ -12,8 +12,9 @@ export async function POST(req: Request) {
       );
     }
 
-    const modelName = "gemini-1.5-flash";
-    const url = `https://generativelanguage.googleapis.com/v1/models/${modelName}:generateContent?key=${apiKey}`;
+    // ✅ USE SUPPORTED MODEL
+    const modelName = "gemini-2.5-flash";
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
       method: "POST",
@@ -28,12 +29,21 @@ export async function POST(req: Request) {
     });
 
     const data = await response.json();
-    console.log("Gemini Response:", data);
 
-    const botReply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      data?.error?.message ||
-      "Sorry, I couldn’t generate a response.";
+    let botReply =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!botReply) {
+      const errorMsg = data?.error?.message?.toLowerCase() || "";
+
+      if (errorMsg.includes("overloaded")) {
+        botReply =
+          "😅 I'm getting a lot of requests right now. Please try again in a few seconds.";
+      } else {
+        botReply =
+          "Sorry, I couldn’t generate a response right now.";
+      }
+    }
 
     return NextResponse.json({ reply: botReply });
   } catch (error) {
